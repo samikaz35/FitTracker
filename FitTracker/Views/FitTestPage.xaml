@@ -1,0 +1,48 @@
+﻿<Page x:Class="FitTracker.Views.FitTestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FitTracker.Views"
+      xmlns:Model="clr-namespace:CustomObjectWPF.Model" 
+
+      mc:Ignorable="d" 
+      Title="FitTest"
+       Background="Red" d:DesignWidth="1184" d:DesignHeight="526">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#FF1C1648" Offset="0"/>
+                <GradientStop Color="#FF110023" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Model:ButtonCustom x:Name="btnRetour" Foreground="#040403" PressedBackground="#FF7F0799" BorderBrush="#FF7F0799" Neon="True" NeonColor="Green" FontWeight="Bold" FontSize="25" Content="Retour" HorizontalAlignment="Left" Margin="176,393,0,0" Width="315" Click="btnRetour_Click" Height="71" VerticalAlignment="Top">
+            <Model:ButtonCustom.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFC7ACAC"/>
+                    <GradientStop Color="#FFCE5353" Offset="1"/>
+                </LinearGradientBrush>
+            </Model:ButtonCustom.Background>
+        </Model:ButtonCustom>
+        <Model:ButtonCustom x:Name="btnSauvegarder" Foreground="#040403" PressedBackground="#FF7F0799" BorderBrush="#FF7F0799" Neon="True" NeonColor="Green" FontWeight="Bold" FontSize="25" Content="Sauvegarder" HorizontalAlignment="Left" Margin="698,393,0,0" Width="315" Click="btnSauvegarder_Click" Height="71" VerticalAlignment="Top" >
+            <Model:ButtonCustom.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFC7ACAC"/>
+                    <GradientStop Color="#FFA3E677" Offset="1"/>
+                </LinearGradientBrush>
+            </Model:ButtonCustom.Background>
+        </Model:ButtonCustom>
+        <GroupBox Header="FitTest" Foreground="#F6F5E3" FontSize="35" Margin="50,51,50,152"/>
+        <Label x:Name="lblUser" Content="ASDFGHFDSA" FontSize="25" Foreground="#F6F5E3" FontWeight="Bold" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" Width="852"/>
+        <Label x:Name="lblCardio"  Content="Cardio :" FontSize="25" Foreground="#F6F5E3"  HorizontalAlignment="Left" Margin="75,128,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblForce"  Content="Force :" FontSize="25" Foreground="#F6F5E3"  HorizontalAlignment="Left" Margin="75,172,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCardio" HorizontalAlignment="Left" Background="#F6F5E3" FontSize="25" Margin="176,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="238" Height="36"/>
+        <TextBox x:Name="txtForce" HorizontalAlignment="Left" Background="#F6F5E3" FontSize="25" Margin="176,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="238" Height="36"/>
+        <TextBox x:Name="txtInfoSup" FontSize="25" Background="#F6F5E3" Margin="443,136,76,170" TextWrapping="Wrap" Text=""/>
+        <Label x:Name="lblInfoSup" Content="Information supplémentaire :"  FontSize="25" Foreground="#F6F5E3"  HorizontalAlignment="Left" Margin="438,97,0,0" VerticalAlignment="Top"/>
+
+
+
+    </Grid>
+</Page>

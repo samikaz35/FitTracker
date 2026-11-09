@@ -45,7 +45,24 @@ namespace FitTracker
 
             lstNotification.ItemsSource = lstNotif;
 
-          //  frmNav.Content = new VoirUtilisateurPage();
+            //  frmNav.Content = new VoirUtilisateurPage();
+
+            grdHome.Visibility = Visibility.Collapsed;
+            grdNav.Visibility = Visibility.Collapsed;
+            grdmain.RowDefinitions[1].Height = new GridLength(0);
+            frmNav.Content = new ConnectionPage();
+        }
+
+        /// <summary>
+        /// Affiche l'accueil après une connexion réussie.
+        /// À appeler depuis la page de connexion quand l'utilisateur est validé.
+        /// </summary>
+        public void AfficherAccueil()
+        {
+            frmNav.Content = null;
+            grdHome.Visibility = Visibility.Visible;
+            grdNav.Visibility = Visibility.Visible;
+            grdmain.RowDefinitions[1].Height = new GridLength(140);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -68,7 +85,68 @@ namespace FitTracker
         private void btnVoirUtilisateurNav_Click(object sender, RoutedEventArgs e)
         {
             grdHome.Visibility = Visibility.Hidden;
-            frmNav.Content = new TemplatePage();
+            VoirUserPage page = new VoirUserPage();
+
+            // page._Modifier += ModifierUser;
+            page._Ajouter += AjouterUser;
+
+
+            frmNav.Content = page;
+        }
+
+        private void AjouterUser(object? sender, EventArgs e)
+        {
+            frmNav.Content = null;
+            AjouterUser page = new AjouterUser();
+            page._Retour += VoirUserRetour;
+            page._Suivant += VoirUserSuivant;
+            frmNav.Content = page;
+            //grdHome.Visibility=Visibility.Visible;
+        }
+
+        private void VoirUserSuivant(object? sender, EventArgs e)
+        {
+            if (sender is Utilisateur user)
+            {
+
+                FitTestPage page = new FitTestPage(user);
+
+                page._Retour += FitTestRetour;
+                page._Suivant += FitTestSave;
+
+                frmNav.Content = null;
+                frmNav.Content = page;
+            }
+        }
+
+        private void FitTestSave(object? sender, EventArgs e)
+        {
+            frmNav.Content = null;
+            grdHome.Visibility = Visibility.Visible;
+        }
+
+        private void FitTestRetour(object? sender, EventArgs e)
+        {
+            if (sender is Utilisateur user)
+            {
+                frmNav.Content = null;
+                AjouterUser page = new AjouterUser(user);
+                page._Retour += VoirUserRetour;
+                page._Suivant += VoirUserSuivant;
+                frmNav.Content = page;
+            }
+
+        }
+
+        private void VoirUserRetour(object? sender, EventArgs e)
+        {
+            grdHome.Visibility = Visibility.Visible;
+            frmNav.Content = null;
+        }
+
+        private void ModifierUser(object? sender, EventArgs e)
+        {
+            MessageBox.Show("Modifier n'as pas été implémenter");
         }
 
         private void btnHomeNav_Click(object sender, RoutedEventArgs e)
@@ -77,8 +155,38 @@ namespace FitTracker
             grdHome.Visibility = Visibility.Visible;
         }
 
-      
+        private void btnDecoNav_Click(object sender, RoutedEventArgs e)
+        {
+            grdHome.Visibility = Visibility.Collapsed;
+            grdNav.Visibility = Visibility.Collapsed;
+            grdmain.RowDefinitions[1].Height = new GridLength(0);
+            frmNav.Content = new ConnectionPage();
+        }
 
-       
+        private void btnDeconnection_Click(object sender, RoutedEventArgs e)
+        {
+            grdHome.Visibility = Visibility.Collapsed;
+            grdNav.Visibility = Visibility.Collapsed;
+            grdmain.RowDefinitions[1].Height = new GridLength(0);
+            frmNav.Content = new ConnectionPage();
+        }
+
+        private void btnClients_Click(object sender, RoutedEventArgs e)
+        {
+            frmNav.Content = null;
+            grdHome.Visibility = Visibility.Hidden;
+            MesClients page = new();
+            page._Ajouter += MesClientAjout;
+            frmNav.Content = page;
+        }
+
+        private void MesClientAjout(object? sender, EventArgs e)
+        {
+            frmNav.Content = null;
+            AjouterUser page = new AjouterUser();
+            page._Retour += VoirUserRetour;
+            page._Suivant += VoirUserSuivant;
+            frmNav.Content = page;
+        }
     }
 }

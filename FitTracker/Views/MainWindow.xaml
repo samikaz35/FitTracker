@@ -32,7 +32,7 @@
                          SelectedItemBackground="#FF047BA2"
                          SelectedItemForeground="Black"
                          SelectedItemBorderBrush="#FF047BA2"
-                         Margin="40,24,614,34"
+                         Margin="40,24,614,20"
                         >
                     <Model:ListBoxCustom.ItemTemplate>
                         <DataTemplate>
@@ -67,12 +67,12 @@
                                          CornerRadius="14"
                                          BorderThickness="1"
                                          FontWeight="UltraBold"
-                                         Foreground="DarkRed"
+                                         Foreground="Red"
                                          FontSize="14"
                                          HorizontalAlignment="Right"
                                          VerticalAlignment="Top"
                                          Margin="0,10,10,0"
-                                         Click="btnSupprimer_Click"/>
+                                         Click="btnSupprimer_Click" Background="#00000000" BorderBrush="#00000000"/>
                             </Grid>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True">
@@ -88,7 +88,7 @@
                 </Model:ListBoxCustom>
 
 
-                <Model:ButtonCustom x:Name="btnClients" Neon="True"  NeonColor="#FF152BA4" Foreground="#040403" FontWeight="Bold" FontSize="35" Content="Mes Clients" HorizontalAlignment="Left" Margin="612,24,0,0" VerticalAlignment="Top" Height="190" Width="532" BorderBrush="#FF7F0799" PressedBackground="#FF7F0799">
+                <Model:ButtonCustom x:Name="btnClients" Neon="True"  NeonColor="#FF152BA4" Foreground="#040403" FontWeight="Bold" FontSize="35" Content="Mes Clients" HorizontalAlignment="Left" Margin="612,24,0,0" VerticalAlignment="Top" Height="190" Width="532" BorderBrush="#FF7F0799" PressedBackground="#FF7F0799" Click="btnClients_Click">
                     <Model:ButtonCustom.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#42A227"/>
@@ -120,7 +120,7 @@
                         </LinearGradientBrush>
                     </Model:ButtonCustom.Background>
                 </Model:ButtonCustom>
-                <Model:ButtonCustom x:Name="btnDeconnection" Foreground="#040403" PressedBackground="#FF7F0799" BorderBrush="#FF7F0799" Neon="True" NeonColor="Green" FontWeight="Bold" FontSize="35" Content="Déconnection" HorizontalAlignment="Left" Margin="884,360,0,0" VerticalAlignment="Top" Height="104" Width="260">
+                <Model:ButtonCustom x:Name="btnDeconnection" Foreground="#040403" PressedBackground="#FF7F0799" BorderBrush="#FF7F0799" Neon="True" NeonColor="Green" FontWeight="Bold" FontSize="35" Content="Déconnection" HorizontalAlignment="Left" Margin="884,360,0,0" VerticalAlignment="Top" Height="104" Width="260" Click="btnDeconnection_Click">
                     <Model:ButtonCustom.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFB14747"/>
@@ -141,7 +141,7 @@
                 <ColumnDefinition Width="296*"/>
                 <ColumnDefinition Width="296*"/>
             </Grid.ColumnDefinitions>
-            <Model:ButtonCustom x:Name="btnDecoNav"  CornerRadius="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="296" Background="#F9F3E5" PressedBackground="#FF7F0799">
+            <Model:ButtonCustom x:Name="btnDecoNav"  CornerRadius="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="296" Background="#F9F3E5" PressedBackground="#FF7F0799" Click="btnDecoNav_Click">
                 <Image Source="pack://application:,,,/Image/Déconnection.png" Stretch="Uniform" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality"/>
             </Model:ButtonCustom>
             <Model:ButtonCustom x:Name="btnVoirUtilisateurNav" CornerRadius="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="296" Background="#F9F3E5" Grid.Column="1" PressedBackground="#FF7F0799" Click="btnVoirUtilisateurNav_Click">
