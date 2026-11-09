@@ -1,12 +1,118 @@
-﻿<Window x:Class="FitTracker.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitTracker"
+        xmlns:Model="clr-namespace:CustomObjectWPF.Model" x:Class="FitTracker.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Width="1184" Height="666">
+    <Grid x:Name="grdmain">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#FF454164" Offset="0"/>
+                <GradientStop Color="#FF040403" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="140"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Frame x:Name="frmNav" NavigationUIVisibility="Hidden"/>
+
+            <Grid x:Name="grdHome">
+                <Model:ListBoxCustom x:Name="lstNotification"
+                         CornerRadius="10"
+                         ItemCornerRadius="8"
+                         Background="#FFF9F3E5"
+                         BorderBrush="#FF454164"
+                         BorderThickness="2"
+                         SelectedItemBackground="#FF42A227"
+                         SelectedItemForeground="Black"
+                         SelectedItemBorderBrush="#FF42A227"
+                         Margin="40,24,614,34"
+                        >
+                    <Model:ListBoxCustom.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Model:CardCustom x:Name="carte"
+                           Title="{Binding Titre}"
+                           Background="#454164"
+                           BorderBrush="#040403"
+                           BorderThickness="2"
+                           CornerRadius="15"
+                           TitleForeground="#F9F3E5"
+                           TitleFontSize="25">
+                                    <StackPanel>
+                                        <TextBlock x:Name="txtDescriptionTexte" Text="Description :" Foreground="#F9F3E5" FontSize="12" FontWeight="SemiBold" Margin="0,6,0,0"/>
+                                        <TextBlock x:Name="txtDescription" Text="{Binding Description}" Foreground="#F9F3E5" FontSize="14" TextWrapping="Wrap" Margin="0,2,0,0"/>
+
+                                        <TextBlock x:Name="txtEmetteurTexte" Text="Émetteur :" Foreground="#F9F3E5" FontSize="11" FontWeight="SemiBold" Margin="0,12,0,0"/>
+                                        <TextBlock x:Name="txtEmetteur" Text="{Binding Emetteur}" Foreground="#F9F3E5" FontSize="13" Margin="0,2,0,0"/>
+
+                                        <TextBlock x:Name="txtDateTexte" Text="Date d'émission" Foreground="#F9F3E5" FontSize="11" FontWeight="SemiBold" Margin="0,12,0,0"/>
+                                        <TextBlock x:Name="txtDate" Text="{Binding DateEmission}" Foreground="#F9F3E5" FontSize="13" Margin="0,2,0,0"/>
+                                    </StackPanel>
+                                </Model:CardCustom>
+                                <Model:ButtonCustom x:Name="btnSupprimer"
+                                         Content="✕"
+                                         Width="28" Height="28"
+                                         CornerRadius="14"
+                                         Background="#FF040403"
+                                         BorderBrush="#FF42A227"
+                                         BorderThickness="1"
+                                         Foreground="#FF42A227"
+                                         FontSize="14" FontWeight="Bold"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Top"
+                                         Margin="0,10,10,0"
+                                         Click="btnSupprimer_Click"/>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True">
+                                    <Setter TargetName="carte" Property="Background" Value="#FF7F0799"/>
+                                    <Setter TargetName="carte" Property="BorderBrush" Value="#FF42A227"/>
+                                    <Setter TargetName="carte" Property="TitleForeground" Value="#FFF9F3E5"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+
+
+                    </Model:ListBoxCustom.ItemTemplate>
+                </Model:ListBoxCustom>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="grdNav" Grid.Row="1">
+            <Grid.Effect>
+                <DropShadowEffect Color="#FF040403" BlurRadius="20" RenderingBias="Quality" ShadowDepth="0" Direction="10"/>
+            </Grid.Effect>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="296*"/>
+                <ColumnDefinition Width="296*"/>
+                <ColumnDefinition Width="296*"/>
+                <ColumnDefinition Width="296*"/>
+            </Grid.ColumnDefinitions>
+            <Model:ButtonCustom x:Name="btnDecoNav"  CornerRadius="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="296" Background="#F9F3E5" PressedBackground="#FF7F0799">
+                <Image Source="pack://application:,,,/Image/Déconnection.png" Stretch="Uniform" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality"/>
+            </Model:ButtonCustom>
+            <Model:ButtonCustom x:Name="btnVoirUtilisateurNav" CornerRadius="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="296" Background="#F9F3E5" Grid.Column="1" PressedBackground="#FF7F0799" Click="btnVoirUtilisateurNav_Click">
+                <Image Source="pack://application:,,,/Image/VoirUser.png" Stretch="Uniform" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality"/>
+            </Model:ButtonCustom>
+            <Model:ButtonCustom x:Name="btnHomeNav" CornerRadius="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="296" Background="#F9F3E5" Grid.Column="2" PressedBackground="#FF7F0799" Click="btnHomeNav_Click">
+                <Image Source="pack://application:,,,/Image/Home.png" Stretch="Uniform" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality"/>
+            </Model:ButtonCustom>
+            <Model:ButtonCustom x:Name="btnProfilNav" CornerRadius="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="296" Background="#F9F3E5" Grid.Column="3" PressedBackground="#FF7F0799">
+                <Image Source="pack://application:,,,/Image/AccountIcone.png" Stretch="Uniform" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality" Height="134"/>
+            </Model:ButtonCustom>
+
+
+
+
+        </Grid>
 
     </Grid>
+
 </Window>
